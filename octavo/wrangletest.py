@@ -71,12 +71,15 @@ if __name__ == '__main__':
 	root = parsed.iter()
 
 	for i in root:
+		# Parse the Review tags...
 		if i.tag == 'review':
 			review_id = i.id.text
 			rating = i.rating.text
 			votes = i.votes.text
 			started_at = i.started_at.text
 			read_at = i.read_at.text
+
+		# Parse the Book tags...
 		if i.tag == 'book':
 			book_id = i.id.text
 			book_title = i.title.text
@@ -92,6 +95,8 @@ if __name__ == '__main__':
 				published =  None
 			else:
 				published = str(i.published.text)
+
+		# Parse the Author tags...
 		if i.tag == 'author':
 			author_id = i.id.text
 			author_name = i.name.text

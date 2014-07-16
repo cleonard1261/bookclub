@@ -5,8 +5,8 @@
 CREATE TABLE bookclub.books
 (
   book_id integer NOT NULL,
-  book_title character varying(500),
-  book_desc character varying(5000) ,
+  book_title varchar(500),
+  book_desc varchar(5000) ,
   num_pages integer,
   CONSTRAINT book_id PRIMARY KEY (book_id)
 )

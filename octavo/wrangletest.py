@@ -66,7 +66,7 @@ class Database:
 if __name__ == '__main__':
 	db = Database()
 
-	path = '../fixtures/8398291-001.xml'
+	path = '../fixtures/8398291-002.xml'
 	parsed = objectify.parse(open(path))
 	root = parsed.iter()
 
@@ -128,38 +128,6 @@ if __name__ == '__main__':
 				db.query("""insert into bookclub.books_authors_rltn (author_id, book_id, published) values (%s, %s, %s);""", (str(author_id), str(book_id),  published, ))
 
 
-
-
-##########################################################################
-## Requirements
-##########################################################################
-
-# The current setup is the correct setup. Start with Review, then do Books, and, finally, Authors. T
-# By the time the last field in Authors is 
-	
-
-#Problematic record <name>China Miéville</name> on line 6246
-#
-# Plan:
-# Table ==> Author: Authors will be upserted into the Author table. This will hopefully ensure that the 
-# latest record is written last into the table. The fields above will be used. This will also take care 
-# of duplicate records. 
-# The primary key is the author_id.
-#
-# Table ==> Books: will have the book title, author_id, book_id and the rest of the stuff under book.
-# Not sure if there are dupes in the books table, but an upsert will work here as well.
-# The primary key will be the book_id, author_id. If the book has multiple authors then insert multilple records
-# into the book table with for that book_id but with different author_ids
-#
-# Table ==> Critic: This will be the reviewer_id, book_id, rating, votes, and the date fields.
-# The primary key will be the reviewer_id and the book_id. 
-#
-# NOTE: Due to the way the tags are embedded parsing the tags is going to be tricky. 
-# The Outer level is Review.
-# The Next level in is Book
-# The inner most level is Author. 
-#
-#
 
 
 

@@ -1,10 +1,33 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# 
+# Extract data from xml files
+#
+# Author:   Chad Leonard <cl1008@georgetown.edu>
+# Created:  Wed Jul 16 11:26:32 2014 -0400
+#
+# Copyright (C) 2014
+# For license information, see LICENSE.txt
+#
+# ID: wrangletest.py [] cl1008@georgetown.edu $
+
+"""
+Extract data from xml files downloaded
+"""
+
+##########################################################################
+## Imports
+##########################################################################
 
 import unicodedata
 import codecs
 from lxml import objectify, etree
 import psycopg2
+
+
+##########################################################################
+## Database Object
+##########################################################################
 
 class Database:
 	host = 'localhost'
@@ -35,6 +58,10 @@ class Database:
 			return True
 		else:
 			return False
+
+##########################################################################
+## Main
+##########################################################################
 
 if __name__ == '__main__':
 	db = Database()
@@ -98,7 +125,9 @@ if __name__ == '__main__':
 
 
 
-
+##########################################################################
+## Requirements
+##########################################################################
 
 # The current setup is the correct setup. Start with Review, then do Books, and, finally, Authors. T
 # By the time the last field in Authors is 

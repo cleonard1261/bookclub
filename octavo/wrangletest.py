@@ -61,7 +61,10 @@ if __name__ == '__main__':
 				num_pages =  None
 			else:
 				num_pages = str(i.num_pages)
-			published = i.published
+			if  i.published.text == None:
+				published =  None
+			else:
+				published = str(i.published.text)
 		if i.tag == 'author':
 			author_id = i.id.text
 			author_name = i.name.text
@@ -86,6 +89,11 @@ if __name__ == '__main__':
 			q = "select count(*) from bookclub.authors where author_id = " +str(author_id)
 			if not db.idExists(q):
 				db.query("""insert into bookclub.authors (author_id, author_name, image_url, small_image_url, link, average_rating, ratings_count, text_reviews_count ) values (%s, %s, %s, %s, %s, %s, %s, %s);""", (str(author_id), str(author_name.encode('utf-8')), image_url, small_image_url,link, average_rating, ratings_count, text_reviews_count, ))
+
+			# Load the Books and Authors Relationship Table
+			q = "select count(*) from bookclub.books_authors_rltn where author_id = " +str(author_id) +" and book_id = " +str(book_id)
+			if not db.idExists(q):
+				db.query("""insert into bookclub.books_authors_rltn (author_id, book_id, published) values (%s, %s, %s);""", (str(author_id), str(book_id),  published, ))
 
 
 
